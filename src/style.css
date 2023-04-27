@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(90deg, #000000,#8a8a8a);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.keyboard-wrapper {
+  position: relative;
+  max-width: 1200px;
+  background: linear-gradient(90deg, #006666,#006666,#b4fed9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 10%;
+  overflow: hidden;
+  order: 2;
+}
+
+.row {
+  display: flex;
+}
+
+.key {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(90deg, #1d3844,#2e485f,#1d3844);
+  color: rgb(158, 97, 186);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0 20% 20%;
+  cursor: pointer;
+}
+
+.key:hover {
+  background: linear-gradient(90deg, #0a4f5f,#66a8b8);
+  color: azure;
+}
+.key.active {
+   background: linear-gradient(90deg, #9c4ab1,#e775d9,#d893ce);
+   color: rgb(7, 0, 0);
+   border-radius: 0 50%;
+}
+
+.key.removed {
+   animation: key-animation 0.2s ease-in-out;
+}
+
+@keyframes key-animation {
+   0% {
+      background-color: #dbe2dd;
+      color: aqua;
+   }
+
+   100% {
+      background-color: #1892ad;
+      color: rgb(15, 3, 3);
+   }
+}
+
+.keyboard-keys {
+  padding: 20px;
+}
+
+.backspace {
+  width: 120px;
+}
+
+.tab {
+  width: 124px;
+}
+
+.tab::after {
+  content: "Tab";
+}
+.enter {
+  width: 130px;
+}
+
+.enter::after {
+  content: "Enter";
+}
+
+.caps-lock {
+  width: 124px;
+}
+
+.shift {
+  width: 124px;
+}
+
+.shift::after {
+  content: "Shift";
+}
+
+.space {
+  max-width: 380px;
+  width: 100%;
+}
+
+.arrow-bottom {
+  rotate: 180deg;
+}
+
+.input {
+   background-color: rgb(187, 112, 187);
+   color: #1709ae;
+   font-weight: 700;
+   margin-bottom: 30px;
+   padding: 12px;
+   max-width: 1100px;
+   width: 100%;
+   height: 120px;
+   border: 4px solid black;
+   border-radius: 20% 10% 10% 0;
+   font-size: 20px;
+   transition: 0.2s ease-in-out;
+}
