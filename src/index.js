@@ -6,11 +6,12 @@ const container = document.createElement('div');
 const keyboardWrapp = document.createElement('div');
 const keyboardKeys = document.createElement('div');
 const input = document.createElement('textarea');
-const numberArr = ['`', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '-', '=', 'Backspace'];
-const tabArr = ['', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'];
-const capsArr = ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', ''];
-const shiftArr = ['', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '^', ''];
-const ctrlArr = ['CTRL', 'Win', 'Alt', '', 'Alt', 'CTRL', '<', '^', '>'];
+const numberArr = ['`', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '-', '=', ''];
+const tabArr = ['', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', ''];
+const capsArr = ['', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', ''];
+const shiftArr = ['', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '↑', ''];
+const ctrlArr = ['', '', '', '', '', '', '←', '↓', '→'];
+
 function createHtml() {
   container.classList.add('container');
   keyboardWrapp.classList.add('keyboard-wrapper');
@@ -89,3 +90,161 @@ function createHtml() {
 }
 
 createHtml();
+
+const keys = document.querySelectorAll('.key');
+const space = document.querySelector('.space');
+const shiftLeft = document.querySelector('.shift-left');
+const shiftRight = document.querySelector('.shift-right');
+const capsLock = document.querySelector('.caps-lock');
+const arrowTop = document.querySelector('.arrow-top');
+const arrowRight = document.querySelector('.arrow-right');
+const arrowBottom = document.querySelector('.arrow-bottom');
+const arrowLeft = document.querySelector('.arrow-left');
+const enter = document.querySelector('.enter');
+const tab = document.querySelector('.tab');
+const backspace = document.querySelector('.backspace');
+const del = document.querySelector('.delete');
+const ctrlLeft = document.querySelector('.ctrl-left');
+const ctrlRight = document.querySelector('.ctrl-right');
+const altLeft = document.querySelector('.alt-left');
+const altRight = document.querySelector('.alt-right');
+
+const phisicalKeyboard = () => {
+  window.addEventListener('keydown', (e) => {
+    for (let i = 0; i < keys.length; i += 1) {
+      if (e.key === keys[i].getAttribute('keyname') || e.key === keys[i].getAttribute('LowerCaseName')) {
+        keys[i].classList.add('active');
+        input.value += keys[i].innerText;
+      }
+    }
+    if (e.code === 'Space') {
+      space.classList.add('active');
+      input.value += '';
+    }
+    if (e.code === 'ShiftLeft') {
+      shiftLeft.classList.add('active');
+      shiftRight.classList.remove('active');
+    }
+    if (e.code === 'ShiftRight') {
+      shiftRight.classList.add('active');
+      shiftLeft.classList.remove('active');
+    }
+    if (e.code === 'CapsLock') {
+      capsLock.classList.toggle('active');
+      keyboardWrapp.classList.toggle('uppercase');
+    }
+    if (e.code === 'ArrowUp') {
+      arrowTop.classList.add('active');
+      input.value += '↑';
+    }
+    if (e.code === 'ArrowRight') {
+      arrowRight.classList.add('active');
+      input.value += '→';
+    }
+    if (e.code === 'ArrowDown') {
+      arrowBottom.classList.add('active');
+      input.value += '↓';
+    }
+    if (e.code === 'ArrowLeft') {
+      arrowLeft.classList.add('active');
+      input.value += '←';
+    }
+    if (e.code === 'Enter') {
+      enter.classList.add('active');
+      input.value += '\n';
+    }
+    if (e.code === 'Tab') {
+      tab.classList.toggle('removed');
+      input.value += '\t';
+    }
+    if (e.code === 'Backspace') {
+      backspace.classList.add('active');
+    }
+    if (e.code === 'Delete') {
+      del.classList.add('active');
+      input.value += '';
+    }
+    if (e.code === 'AltLeft') {
+      altLeft.classList.add('active');
+    }
+    if (e.code === 'AltRight') {
+      altRight.classList.add('active');
+    }
+    if (e.code === 'ControlLeft') {
+      ctrlLeft.classList.add('active');
+    }
+    if (e.code === 'ControlRight') {
+      ctrlRight.classList.add('active');
+    }
+  });
+
+  window.addEventListener('keyup', (e) => {
+    for (let i = 0; i < keys.length; i += 1) {
+      if (e.key === keys[i].getAttribute('keyname') || e.key === keys[i].getAttribute('LowerCaseName')) {
+        keys[i].classList.remove('active');
+        keys[i].classList.toggle('removed');
+      }
+    }
+
+    if (e.code === 'Space') {
+      space.classList.remove('active');
+      space.classList.toggle('removed');
+    }
+    if (e.code === 'CapsLock') {
+      capsLock.classList.remove('active');
+      capsLock.classList.toggle('removed');
+    }
+    if (e.code === 'ShiftLeft') {
+      shiftLeft.classList.remove('active');
+    }
+    if (e.code === 'ShiftRight') {
+      shiftRight.classList.remove('active');
+    }
+    if (e.code === 'ArrowUp') {
+      arrowTop.classList.remove('active');
+      arrowTop.classList.toggle('removed');
+    }
+    if (e.code === 'ArrowRight') {
+      arrowRight.classList.remove('active');
+      arrowRight.classList.toggle('removed');
+    }
+    if (e.code === 'ArrowDown') {
+      arrowBottom.classList.remove('active');
+      arrowBottom.classList.toggle('removed');
+    }
+    if (e.code === 'ArrowLeft') {
+      arrowLeft.classList.remove('active');
+      arrowLeft.classList.toggle('removed');
+    }
+    if (e.code === 'Enter') {
+      enter.classList.remove('active');
+      enter.classList.toggle('removed');
+    }
+    if (e.code === 'Backspace') {
+      backspace.classList.remove('active');
+      backspace.classList.toggle('removed');
+    }
+    if (e.code === 'Delete') {
+      del.classList.remove('active');
+      del.classList.toggle('removed');
+    }
+    if (e.code === 'AltLeft') {
+      altLeft.classList.remove('active');
+      altLeft.classList.toggle('removed');
+    }
+    if (e.code === 'AltRight') {
+      altRight.classList.remove('active');
+      altRight.classList.toggle('removed');
+    }
+    if (e.code === 'ControlLeft') {
+      ctrlLeft.classList.remove('active');
+      ctrlLeft.classList.toggle('removed');
+    }
+    if (e.code === 'ControlRight') {
+      ctrlRight.classList.remove('active');
+      ctrlRight.classList.toggle('removed');
+    }
+  });
+};
+
+phisicalKeyboard();
