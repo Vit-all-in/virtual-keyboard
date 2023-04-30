@@ -132,6 +132,7 @@ const phisicalKeyboard = () => {
     if (e.code === 'CapsLock') {
       capsLock.classList.toggle('active');
       keyboardWrapp.classList.toggle('uppercase');
+      e.preventDefault();
     }
     if (e.code === 'ArrowUp') {
       arrowTop.classList.add('active');
@@ -156,6 +157,7 @@ const phisicalKeyboard = () => {
     if (e.code === 'Tab') {
       tab.classList.toggle('removed');
       input.value += '\t';
+      e.preventDefault();
     }
     if (e.code === 'Backspace') {
       backspace.classList.add('active');
@@ -192,7 +194,7 @@ const phisicalKeyboard = () => {
     }
     if (e.code === 'CapsLock') {
       capsLock.classList.remove('active');
-      capsLock.classList.toggle('removed');
+      capsLock.classList.add('removed');
     }
     if (e.code === 'ShiftLeft') {
       shiftLeft.classList.remove('active');
@@ -248,3 +250,50 @@ const phisicalKeyboard = () => {
 };
 
 phisicalKeyboard();
+
+function virtualKeyboard() {
+  for (let i = 0; i < keys.length; i += 1) {
+    keys[i].setAttribute('keyname', keys[i].innerText);
+    keys[i].setAttribute('LowerCaseName', keys[i].innerText.toLowerCase());
+    keys[i].addEventListener('mousedown', () => {
+      input.value += keys[i].innerText;
+      keys[i].classList.add('active');
+    });
+    keys[i].addEventListener('mouseup', () => {
+      keys[i].classList.remove('active');
+    });
+  }
+  space.addEventListener('click', () => {
+    input.value += ' ';
+  });
+
+  keys.forEach((key) => {
+    key.addEventListener('click', function q() {
+      if (this.classList.contains('caps-lock')) {
+        keyboardWrapp.classList.toggle('uppercase');
+      }
+    });
+  });
+
+  tab.addEventListener('click', () => {
+    input.value += '\t';
+    input.focus();
+  });
+
+  enter.addEventListener('click', () => {
+    input.value += '\n';
+    input.focus();
+  });
+
+  backspace.addEventListener('click', () => {
+    input.setRangeText('', input.selectionStart - 1, input.selectionEnd);
+    input.focus();
+  });
+
+  del.addEventListener('click', () => {
+    input.setRangeText('', input.selectionStart, input.selectionEnd + 1);
+    input.focus();
+  });
+}
+
+virtualKeyboard();
