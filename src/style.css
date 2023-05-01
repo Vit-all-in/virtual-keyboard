@@ -138,8 +138,8 @@ body {
   width: 100%;
 }
 
-.win::after {
-  content: "Win";
+.lang::after {
+  content: "Lang";
 }
 
 .input {
@@ -158,4 +158,8 @@ body {
 
 .uppercase {
   text-transform: capitalize;
+}
+
+.language {
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }

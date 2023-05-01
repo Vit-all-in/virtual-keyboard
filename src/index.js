@@ -68,25 +68,25 @@ function createHtml() {
     key.innerHTML = ctrlArr[i];
     row5.appendChild(key);
   }
-  const keys = document.querySelectorAll('.key');
-  keys[13].classList.add('backspace');
-  keys[14].classList.add('tab');
-  keys[27].classList.add('slash');
-  keys[28].classList.add('delete');
-  keys[29].classList.add('caps-lock');
-  keys[41].classList.add('enter');
-  keys[42].classList.add('shift', 'shift-left');
-  keys[54].classList.add('shift', 'shift-right');
-  keys[53].classList.add('arrow-top');
-  keys[55].classList.add('ctrl', 'ctrl-left');
-  keys[56].classList.add('win');
-  keys[57].classList.add('alt', 'alt-left');
-  keys[58].classList.add('space');
-  keys[59].classList.add('alt', 'alt-right');
-  keys[60].classList.add('ctrl', 'ctrl-right');
-  keys[61].classList.add('arrow-left');
-  keys[62].classList.add('arrow-bottom');
-  keys[63].classList.add('arrow-right');
+  const keys = document.querySelectorAll('.key', 'option');
+  keys[13].classList.add('backspace', 'option');
+  keys[14].classList.add('tab', 'option');
+  keys[27].classList.add('slash', 'option');
+  keys[28].classList.add('delete', 'option');
+  keys[29].classList.add('caps-lock', 'option');
+  keys[41].classList.add('enter', 'option');
+  keys[42].classList.add('shift', 'shift-left', 'option');
+  keys[54].classList.add('shift', 'shift-right', 'option');
+  keys[53].classList.add('arrow-top', 'option');
+  keys[55].classList.add('ctrl', 'ctrl-left', 'option');
+  keys[56].classList.add('lang', 'option');
+  keys[57].classList.add('alt', 'alt-left', 'option');
+  keys[58].classList.add('space', 'option');
+  keys[59].classList.add('alt', 'alt-right', 'option');
+  keys[60].classList.add('ctrl', 'ctrl-right', 'option');
+  keys[61].classList.add('arrow-left', 'option');
+  keys[62].classList.add('arrow-bottom', 'option');
+  keys[63].classList.add('arrow-right', 'option');
 }
 
 createHtml();
@@ -108,7 +108,7 @@ const ctrlLeft = document.querySelector('.ctrl-left');
 const ctrlRight = document.querySelector('.ctrl-right');
 const altLeft = document.querySelector('.alt-left');
 const altRight = document.querySelector('.alt-right');
-
+const lang = document.querySelector('.lang');
 const phisicalKeyboard = () => {
   window.addEventListener('keydown', (e) => {
     for (let i = 0; i < keys.length; i += 1) {
@@ -297,3 +297,27 @@ function virtualKeyboard() {
 }
 
 virtualKeyboard();
+
+function changeLanguage() {
+  const key = document.querySelectorAll('.key');
+  key.forEach((item) => {
+    if (!item.classList.contains('option')) {
+      item.classList.add('symbol');
+    }
+  });
+  const symbol = document.querySelectorAll('.symbol');
+  const arrRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.'];
+  const arrEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/'];
+  keyboardWrapp.classList.toggle('language');
+  if (keyboardWrapp.classList.contains('language')) {
+    for (let i = 0; i < arrRu.length; i += 1) {
+      symbol[i].innerText = arrRu[i];
+    }
+  } else {
+    for (let i = 0; i < arrEng.length; i += 1) {
+      symbol[i].innerText = arrEng[i];
+    }
+  }
+}
+
+lang.addEventListener('click', changeLanguage);

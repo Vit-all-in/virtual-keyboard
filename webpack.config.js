@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Наш заголовок страницы',
+      title: 'Rss Virtual-Keyboard',
     }),
   ],
   module: {
