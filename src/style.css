@@ -163,3 +163,9 @@ body {
 .language {
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
+
+.info {
+  font-size: 22px;
+  padding: 20px;
+  color: #ff2111;
+}

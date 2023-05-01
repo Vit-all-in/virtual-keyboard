@@ -87,6 +87,10 @@ function createHtml() {
   keys[61].classList.add('arrow-left', 'option');
   keys[62].classList.add('arrow-bottom', 'option');
   keys[63].classList.add('arrow-right', 'option');
+  const p = document.createElement('p');
+  p.classList.add('info');
+  keyboardWrapp.appendChild(p);
+  p.innerText = 'Клавиатура создана в операционной системе Windows Для переключения языка используйте клавишу "Lang"';
 }
 
 createHtml();
@@ -312,10 +316,12 @@ function changeLanguage() {
   if (keyboardWrapp.classList.contains('language')) {
     for (let i = 0; i < arrRu.length; i += 1) {
       symbol[i].innerText = arrRu[i];
+      localStorage.setItem(symbol[i].innerText, arrRu[i]);
     }
   } else {
     for (let i = 0; i < arrEng.length; i += 1) {
       symbol[i].innerText = arrEng[i];
+      localStorage.setItem(symbol[i].innerText, arrEng[i]);
     }
   }
 }
